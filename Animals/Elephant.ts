@@ -1,23 +1,26 @@
 import { SleepAndWalk } from "../Interfaces/SleepAndWalk";
-import { Animal } from "../src/Animal";
+import { Animal } from "../Classes/Animal";
+import { SingletonLoggerManager } from "../Classes/SingletonLoggerManager";
 
 export class Elephant extends Animal implements SleepAndWalk {
-    private weight:number;
-  
-    constructor(name:string, age:number, weight:number){
+    private weight: number;
+    private loggerManager: SingletonLoggerManager; 
+
+    constructor(name: string, age: number, weight: number, loggerManager: SingletonLoggerManager) { 
         super(name, age);
         this.weight = weight;
-        
-    }
-    makeSound():void{
-        console.log('Elephant makes sound');
-        
+        this.loggerManager = loggerManager; 
     }
 
-    sleep():void{   
-        console.log('Elephant sleeps');   
+    makeSound(): void {
+        this.loggerManager.log('Elephant makes sound'); 
     }
-    walk():void{
-        console.log('Elephant walks');   
+
+    sleep(): void {
+        this.loggerManager.log('Elephant sleeps'); 
+    }
+
+    walk(): void {
+        this.loggerManager.log('Elephant walks'); 
     }
 }
